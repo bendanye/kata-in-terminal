@@ -1,1 +1,1 @@
-# kata_in_terminal
+# Kata In Terminal
