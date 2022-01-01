@@ -1,8 +1,7 @@
-from kata.kata_helper import get_questions, get_answer_from_solution
-
+from kata.kata_helper import get_answer_from_solution
+from kata.kata_from_file import KataFromFile
 import os
 import argparse
-from os.path import join
 
 parser = argparse.ArgumentParser(description='Kata in Terminal.')
 parser.add_argument('--question_folder_name', nargs='?', const="questions",
@@ -18,7 +17,9 @@ folder_path = args.folder_path
 questions_folder_name = args.question_folder_name
 solutions_folder_name = args.solution_folder_name
 
-questions = get_questions(join(folder_path, questions_folder_name))
+kata = KataFromFile(folder_path, questions_folder_name, solutions_folder_name)
+
+questions = kata.get_questions()
 current_question = 0
 
 while True:
@@ -27,17 +28,13 @@ while True:
     print("\nQuestion: " + chosen_question["question"])
     answer = input("Type the answer:\n")
 
-    question_file_name = chosen_question["file_name"]
-
-    solution_path = join(
-        folder_path, solutions_folder_name, question_file_name)
-    with open(solution_path, 'r') as file:
-        solution = file.read()
-        solution_answer = get_answer_from_solution(solution)
-        if solution_answer == answer:
-            print(f"{question_file_name} ✅")
-        else:
-            print(f"{question_file_name} ❌. Correct answer is:\n {solution_answer}")
+    solution = kata.get_solution(chosen_question["file_name"])
+    solution_answer = get_answer_from_solution(solution)
+    if solution_answer == answer:
+        print("Correct Answer! ✅")
+    else:
+        print(
+            f"Incorrect Answer! ❌. Correct answer is:\n {solution_answer}")
 
     input('-> Press enter to move to next question...\n')
 
