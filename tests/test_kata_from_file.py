@@ -42,14 +42,13 @@ def test_get_solution_should_success():
 
 def test_save_incorrect_answer_should_success():
     with tempfile.TemporaryDirectory() as tmpdirname:
-        expected_file_name = "error.txt"
-        error_file_path = join(tmpdirname, expected_file_name)
+        incorrect_answers_file_path = join(tmpdirname, "incorrect_answers.txt")
         sut = KataFromFile(folder_path=tmpdirname,
-                           incorrect_answers=error_file_path)
+                           incorrect_answers=incorrect_answers_file_path)
 
         sut.save_incorrect_answer("incorrect_answer1")
         sut.save_incorrect_answer("incorrect_answer2")
 
-        assert os.path.exists(error_file_path) is True
-        with open(error_file_path, 'r') as actual_file:
+        assert os.path.exists(incorrect_answers_file_path) is True
+        with open(incorrect_answers_file_path, 'r') as actual_file:
             assert "incorrect_answer1\nincorrect_answer2\n" == actual_file.read()

@@ -4,7 +4,7 @@ from os.path import isfile, join
 
 class KataFromFile():
 
-    def __init__(self, folder_path, questions_folder_name="questions", solutions_folder_name="solutions", incorrect_answers="error.txt"):
+    def __init__(self, folder_path, questions_folder_name="questions", solutions_folder_name="solutions", incorrect_answers="incorrect_answers.txt"):
         self.questions_path = join(folder_path, questions_folder_name)
         self.solutions_path = join(folder_path, solutions_folder_name)
         self.incorrect_answers = incorrect_answers
