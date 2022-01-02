@@ -33,8 +33,8 @@ while True:
     if solution_answer == answer:
         print("Correct Answer! ✅")
     else:
-        print(
-            f"Incorrect Answer! ❌. Correct answer is:\n {solution_answer}")
+        print(f"Incorrect Answer! ❌. Correct answer is:\n {solution_answer}")
+        kata.save_incorrect_answer(chosen_question["file_name"])
 
     input('-> Press enter to move to next question...\n')
 

@@ -4,9 +4,10 @@ from os.path import isfile, join
 
 class KataFromFile():
 
-    def __init__(self, folder_path, questions_folder_name="questions", solutions_folder_name="solutions"):
+    def __init__(self, folder_path, questions_folder_name="questions", solutions_folder_name="solutions", incorrect_answers="error.txt"):
         self.questions_path = join(folder_path, questions_folder_name)
         self.solutions_path = join(folder_path, solutions_folder_name)
+        self.incorrect_answers = incorrect_answers
 
     def get_questions(self):
         questions = [f for f in listdir(self.questions_path)
@@ -29,3 +30,7 @@ class KataFromFile():
                 "question": file.read(),
                 "file_name": question
             }
+
+    def save_incorrect_answer(self, question):
+        with open(join(self.incorrect_answers), 'w') as file:
+            file.write(question)
