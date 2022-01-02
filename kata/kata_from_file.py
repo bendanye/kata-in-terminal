@@ -32,5 +32,6 @@ class KataFromFile():
             }
 
     def save_incorrect_answer(self, question):
-        with open(join(self.incorrect_answers), 'w') as file:
+        with open(join(self.incorrect_answers), 'a') as file:
             file.write(question)
+            file.write("\n")
