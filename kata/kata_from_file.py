@@ -10,13 +10,16 @@ class KataFromFile():
         self.incorrect_answers = incorrect_answers
 
     def get_questions(self):
-        questions = [f for f in listdir(self.questions_path)
-                     if isfile(join(self.questions_path, f))]
+        questions = self._determine_list_of_questions()
 
         return [
             self._populate_question(question)
             for question in questions
         ]
+
+    def _determine_list_of_questions(self):
+        return [f for f in listdir(self.questions_path)
+                if isfile(join(self.questions_path, f))]
 
     def get_solution(self, question_file_name):
         solution_path = join(self.solutions_path, question_file_name)
