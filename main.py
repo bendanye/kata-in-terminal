@@ -1,5 +1,5 @@
 from kata.kata_helper import get_answer_from_solution
-from kata.kata_from_file import KataFromFile
+from kata.kata_factory import KataFactory
 import os
 import argparse
 
@@ -8,6 +8,8 @@ parser.add_argument('--question_folder_name', nargs='?', const="questions",
                     default="questions")
 parser.add_argument('--solution_folder_name', nargs='?', const="solutions",
                     default="solutions")
+parser.add_argument('--type', nargs='?', const="file",
+                    default="file")
 parser.add_argument('folder_path', metavar='P',
                     help='Root Path to the questions and solutions')
 
@@ -16,8 +18,10 @@ args = parser.parse_args()
 folder_path = args.folder_path
 questions_folder_name = args.question_folder_name
 solutions_folder_name = args.solution_folder_name
+kata_type = args.type
 
-kata = KataFromFile(folder_path, questions_folder_name, solutions_folder_name)
+kata = KataFactory.get_kata(kata_type,
+                            folder_path, questions_folder_name, solutions_folder_name)
 
 questions = kata.get_questions()
 current_question = 0
