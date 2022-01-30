@@ -1,3 +1,4 @@
 tempfile
 pytest
 pre-commit
+pytest-cov
