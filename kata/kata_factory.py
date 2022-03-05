@@ -10,5 +10,5 @@ kata_types = {
 class KataFactory():
 
     @staticmethod
-    def get_kata(type, folder_path, questions_folder_name, solutions_folder_name):
+    def get_kata(type: str, folder_path: str, questions_folder_name: str, solutions_folder_name: str):
         return kata_types[type](folder_path, questions_folder_name, solutions_folder_name)

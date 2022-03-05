@@ -6,7 +6,7 @@ from kata.kata_from_file import KataFromFile
 
 class KataFromIncorrectAnsFile(KataFromFile):
 
-    def __init__(self, folder_path, questions_folder_name="questions", solutions_folder_name="solutions", incorrect_answers="incorrect_answers.txt"):
+    def __init__(self, folder_path: str, questions_folder_name="questions", solutions_folder_name="solutions", incorrect_answers="incorrect_answers.txt"):
         super().__init__(folder_path, questions_folder_name,
                          solutions_folder_name, incorrect_answers)
 
