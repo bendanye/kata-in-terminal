@@ -6,7 +6,6 @@ Practice writing commands or codes in your terminal
 
 ### Prerequisites
 
-* Your questions and answers is either version control or easily reverted to initial state
 * Python 3.6 minimum
 
 ### Installation
@@ -15,23 +14,35 @@ Practice writing commands or codes in your terminal
 pip install -r requirements.txt
 ```
 
+### Setup
+
+* By default this program will look at "questions" and "solutions" folders
+* Each question and solution file name must matched
+* For solution file to indicate the solution place within `####`. Refer to `examples` folder for details.  
+
 ### Run the program
 
 ```shell
 python main.py -p <<your root path where questions and solutions folder reside>>
 ```
 
+For example to run the examples in this project:
+
+```shell
+python main.py -p examples
+```
+
 ## Modes of running
 
-* Interactive mode (one question one by one)
+* Interactive mode (one question at a time)
     * From all questions
     * From questions previously have incorrect answer
 
 ## Potential enhancements
 
 - [ ] Check that code is correct even if there is new line
-- [ ] List of questions from a markdown file
-- [ ] Check all answers from question files
+- [ ] Generate questions from a markdown file
+- [ ] Allow to run in non-interactive mode, like exam mode
 
 ## Impetus
 
