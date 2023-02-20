@@ -20,5 +20,4 @@ line 1
 line 2
 ####
 """
-    assert get_answer_from_solution(
-        solution) == "my answer\n\nline 1\n\nline 2"
+    assert get_answer_from_solution(solution) == "my answer\n\nline 1\n\nline 2"

@@ -7,7 +7,8 @@ def test_should_get_kata_file():
 
 
 def test_should_get_kata_file():
-    kata = KataFactory.get_kata(
-        "incorrect_ans_file", "path", "questions", "solutions")
-    assert str(type(
-        kata)) == "<class 'kata.kata_from_incorrect_ans_file.KataFromIncorrectAnsFile'>"
+    kata = KataFactory.get_kata("incorrect_ans_file", "path", "questions", "solutions")
+    assert (
+        str(type(kata))
+        == "<class 'kata.kata_from_incorrect_ans_file.KataFromIncorrectAnsFile'>"
+    )

@@ -15,13 +15,13 @@ def test_get_questions_should_success():
         f.write(expected_question)
         f.close()
 
-        sut = KataFromFile(folder_path=tmpdirname,
-                           questions_folder_name=questions_folder_name)
+        sut = KataFromFile(
+            folder_path=tmpdirname, questions_folder_name=questions_folder_name
+        )
 
-        assert sut.get_questions() == [{
-            "question": expected_question,
-            "file_name": expected_file_name
-        }]
+        assert sut.get_questions() == [
+            {"question": expected_question, "file_name": expected_file_name}
+        ]
 
 
 def test_get_solution_should_success():
@@ -34,8 +34,9 @@ def test_get_solution_should_success():
         f.write(expected_solution)
         f.close()
 
-        sut = KataFromFile(folder_path=tmpdirname,
-                           solutions_folder_name=solutions_folder_name)
+        sut = KataFromFile(
+            folder_path=tmpdirname, solutions_folder_name=solutions_folder_name
+        )
 
         assert sut.get_solution(expected_file_name) == expected_solution
 
@@ -43,12 +44,13 @@ def test_get_solution_should_success():
 def test_save_incorrect_answer_should_success():
     with tempfile.TemporaryDirectory() as tmpdirname:
         incorrect_answers_file_path = join(tmpdirname, "incorrect_answers.txt")
-        sut = KataFromFile(folder_path=tmpdirname,
-                           incorrect_answers=incorrect_answers_file_path)
+        sut = KataFromFile(
+            folder_path=tmpdirname, incorrect_answers=incorrect_answers_file_path
+        )
 
         sut.save_incorrect_answer("incorrect_answer1")
         sut.save_incorrect_answer("incorrect_answer2")
 
         assert os.path.exists(incorrect_answers_file_path) is True
-        with open(incorrect_answers_file_path, 'r') as actual_file:
+        with open(incorrect_answers_file_path, "r") as actual_file:
             assert "incorrect_answer1\nincorrect_answer2\n" == actual_file.read()

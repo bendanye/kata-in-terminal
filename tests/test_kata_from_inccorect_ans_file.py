@@ -21,10 +21,12 @@ def test_get_questions_should_only_get_list_in_incorrect_answer_file():
         f.write("not expecting question")
         f.close()
 
-        sut = KataFromIncorrectAnsFile(folder_path=tmpdirname,
-                                       questions_folder_name=questions_folder_name, incorrect_answers=incorrect_answers_file_path)
+        sut = KataFromIncorrectAnsFile(
+            folder_path=tmpdirname,
+            questions_folder_name=questions_folder_name,
+            incorrect_answers=incorrect_answers_file_path,
+        )
 
-        assert sut.get_questions() == [{
-            "question": expected_question,
-            "file_name": expected_file_name
-        }]
+        assert sut.get_questions() == [
+            {"question": expected_question, "file_name": expected_file_name}
+        ]
