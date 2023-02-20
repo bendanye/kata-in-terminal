@@ -1,8 +1,8 @@
-from kata.kata_from_file import KataFromFile
-import tempfile
 import os
+import tempfile
 from os.path import join
-import shutil
+
+from kata.kata_from_file import KataFromFile
 
 
 def test_get_questions_should_success():

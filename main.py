@@ -1,10 +1,8 @@
-import os
 import argparse
+import os
 
-from kata.kata_helper import get_answer_from_solution
 from kata.kata_factory import KataFactory
-
-from typing import List, Dict
+from kata.kata_helper import get_answer_from_solution
 
 
 def main() -> None:

@@ -1,6 +1,3 @@
-from os import listdir
-from os.path import isfile, join
-
 from kata.kata_from_file import KataFromFile
 
 

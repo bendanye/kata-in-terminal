@@ -1,7 +1,8 @@
-from kata.kata_from_incorrect_ans_file import KataFromIncorrectAnsFile
-import tempfile
 import os
+import tempfile
 from os.path import join
+
+from kata.kata_from_incorrect_ans_file import KataFromIncorrectAnsFile
 
 
 def test_get_questions_should_only_get_list_in_incorrect_answer_file():
