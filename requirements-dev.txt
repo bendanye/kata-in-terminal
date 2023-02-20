@@ -2,3 +2,4 @@ tempfile
 pytest
 pre-commit
 pytest-cov
+black==22.12.0
