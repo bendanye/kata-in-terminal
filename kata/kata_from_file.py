@@ -1,4 +1,5 @@
-from os import listdir
+import glob
+
 from os.path import isfile, join
 
 from typing import Dict, List
@@ -23,8 +24,8 @@ class KataFromFile:
 
     def _determine_list_of_questions(self) -> List[str]:
         return [
-            f
-            for f in listdir(self.questions_path)
+            f.replace(f"{self.questions_path}/", "")
+            for f in glob.iglob(self.questions_path + '**/**', recursive=True)
             if isfile(join(self.questions_path, f))
         ]
 
