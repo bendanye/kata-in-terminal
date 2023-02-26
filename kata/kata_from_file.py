@@ -26,7 +26,7 @@ class KataFromFile:
         return [
             f.replace(f"{self.questions_path}/", "")
             for f in glob.iglob(self.questions_path + '**/**', recursive=True)
-            if isfile(join(self.questions_path, f))
+            if isfile(f)
         ]
 
     def get_solution(self, question_file_name: str) -> str:
