@@ -30,7 +30,7 @@ def _parse_args():
     )
     parser.add_argument("--type", nargs="?", const="file", default="file")
     parser.add_argument(
-        "folder_path", metavar="P", help="Root Path to the questions and solutions"
+        "--folder_path", metavar="P", help="Root Path to the questions and solutions"
     )
 
     return parser.parse_args()
