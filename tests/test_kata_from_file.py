@@ -23,6 +23,7 @@ def test_get_questions_should_success():
             {"question": expected_question, "file_name": expected_file_name}
         ]
 
+
 def test_get_questions_in_subdirectory_should_success():
     with tempfile.TemporaryDirectory() as tmp_dir_name:
         questions_folder_name = "questions"
@@ -41,6 +42,7 @@ def test_get_questions_in_subdirectory_should_success():
         assert sut.get_questions() == [
             {"question": expected_question, "file_name": expected_file_name}
         ]
+
 
 def test_get_solution_should_success():
     with tempfile.TemporaryDirectory() as tmp_dir_name:
