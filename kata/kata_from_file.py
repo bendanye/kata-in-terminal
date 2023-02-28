@@ -9,10 +9,10 @@ class KataFromFile:
     def __init__(
         self,
         folder_path: str,
-        questions_folder_name="questions",
-        solutions_folder_name="solutions",
-        incorrect_answers="incorrect_answers.txt",
-    ):
+        questions_folder_name: str = "questions",
+        solutions_folder_name: str = "solutions",
+        incorrect_answers: str = "incorrect_answers.txt",
+    ) -> None:
         self.questions_path = join(folder_path, questions_folder_name)
         self.solutions_path = join(folder_path, solutions_folder_name)
         self.incorrect_answers = incorrect_answers
@@ -25,7 +25,7 @@ class KataFromFile:
     def _determine_list_of_questions(self) -> List[str]:
         return [
             f.replace(f"{self.questions_path}/", "")
-            for f in glob.iglob(self.questions_path + '**/**', recursive=True)
+            for f in glob.iglob(self.questions_path + "**/**", recursive=True)
             if isfile(f)
         ]
 
