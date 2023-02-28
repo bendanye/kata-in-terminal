@@ -6,7 +6,7 @@ def test_should_get_kata_file():
     assert str(type(kata)) == "<class 'kata.kata_from_file.KataFromFile'>"
 
 
-def test_should_get_kata_file():
+def test_should_get_kata_incorrect_ans_file():
     kata = KataFactory.get_kata("incorrect_ans_file", "path", "questions", "solutions")
     assert (
         str(type(kata))
