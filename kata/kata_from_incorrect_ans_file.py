@@ -16,7 +16,7 @@ class KataFromIncorrectAnsFile(KataFromFile):
         )
 
     def _determine_list_of_questions(self) -> List[str]:
-        with open(self.incorrect_answers) as file:
+        with open(self._incorrect_answers) as file:
             array = file.read().split("\n")
             if array[-1] == "":
                 del array[-1]
