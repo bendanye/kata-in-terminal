@@ -3,3 +3,4 @@ pytest
 pre-commit
 pytest-cov
 black==22.12.0
+mypy==1.0.1
