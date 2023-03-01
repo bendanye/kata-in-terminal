@@ -3,6 +3,7 @@ import tempfile
 from os.path import join
 
 from kata.kata_from_incorrect_ans_file import KataFromIncorrectAnsFile
+from kata.question import Question
 
 
 def test_get_questions_should_only_get_list_in_incorrect_answer_file():
@@ -29,5 +30,5 @@ def test_get_questions_should_only_get_list_in_incorrect_answer_file():
         )
 
         assert sut.get_questions() == [
-            {"question": expected_question, "file_name": expected_file_name}
+            Question(id=expected_file_name, question=expected_question)
         ]

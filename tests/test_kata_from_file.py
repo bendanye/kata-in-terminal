@@ -3,6 +3,7 @@ import tempfile
 from os.path import join
 
 from kata.kata_from_file import KataFromFile
+from kata.question import Question
 
 
 def test_get_questions_should_success():
@@ -20,7 +21,7 @@ def test_get_questions_should_success():
         )
 
         assert sut.get_questions() == [
-            {"question": expected_question, "file_name": expected_file_name}
+            Question(id=expected_file_name, question=expected_question)
         ]
 
 
@@ -40,7 +41,7 @@ def test_get_questions_in_subdirectory_should_success():
         )
 
         assert sut.get_questions() == [
-            {"question": expected_question, "file_name": expected_file_name}
+            Question(id=expected_file_name, question=expected_question)
         ]
 
 

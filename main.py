@@ -43,16 +43,16 @@ def _start(kata) -> None:
     while True:
         os.system("cls" if os.name == "nt" else "clear")
         chosen_question = questions[current_question]
-        print("\nQuestion: " + chosen_question["question"])
+        print("\nQuestion: " + chosen_question.question)
         answer = input("Type the answer:\n")
 
-        solution = kata.get_solution(chosen_question["file_name"])
+        solution = kata.get_solution(chosen_question.id)
         solution_answer = get_answer_from_solution(solution)
         if solution_answer == answer:
             print("Correct Answer! ✅")
         else:
             print(f"Incorrect Answer! ❌. Correct answer is:\n {solution_answer}")
-            kata.save_incorrect_answer(chosen_question["file_name"])
+            kata.save_incorrect_answer(chosen_question.id)
 
         input("-> Press enter to move to next question...\n")
 

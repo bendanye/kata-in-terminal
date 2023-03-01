@@ -1,8 +1,8 @@
 import glob
-
 from os.path import isfile, join
+from typing import List
 
-from typing import Dict, List
+from kata.question import Question
 
 
 class KataFromFile:
@@ -17,7 +17,7 @@ class KataFromFile:
         self._solutions_path = join(folder_path, solutions_folder_name)
         self._incorrect_answers = incorrect_answers
 
-    def get_questions(self) -> List[Dict[str, str]]:
+    def get_questions(self) -> List[Question]:
         questions = self._determine_list_of_questions()
 
         return [self._populate_question(question) for question in questions]
@@ -35,9 +35,9 @@ class KataFromFile:
             solution = file.read()
             return solution
 
-    def _populate_question(self, question: str) -> Dict[str, str]:
+    def _populate_question(self, question: str) -> Question:
         with open(join(self._questions_path, question), "r") as file:
-            return {"question": file.read(), "file_name": question}
+            return Question(id=question, question=file.read())
 
     def save_incorrect_answer(self, question: str) -> None:
         with open(join(self._incorrect_answers), "a") as file:
