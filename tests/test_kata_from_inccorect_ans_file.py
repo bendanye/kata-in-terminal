@@ -29,6 +29,6 @@ def test_get_questions_should_only_get_list_in_incorrect_answer_file():
             incorrect_answers=incorrect_answers_file_path,
         )
 
-        assert sut.get_questions() == [
-            Question(id=expected_file_name, question=expected_question)
-        ]
+        assert sut.get_questions() == (
+            Question(id=expected_file_name, question=expected_question),
+        )

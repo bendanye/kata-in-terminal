@@ -1,7 +1,7 @@
 import glob
 import random
 from os.path import isfile, join
-from typing import List
+from typing import List, Tuple
 
 from kata.question import Question
 
@@ -18,12 +18,12 @@ class KataFromFile:
         self._solutions_path = join(folder_path, solutions_folder_name)
         self._incorrect_answers = incorrect_answers
 
-    def get_questions(self) -> List[Question]:
+    def get_questions(self) -> Tuple[Question, ...]:
         questions = self._determine_list_of_questions()
 
         random.shuffle(questions)
 
-        return [self._populate_question(question) for question in questions]
+        return tuple(self._populate_question(question) for question in questions)
 
     def _determine_list_of_questions(self) -> List[str]:
         return [

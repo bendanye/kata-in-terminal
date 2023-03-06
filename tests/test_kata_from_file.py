@@ -20,9 +20,9 @@ def test_get_questions_should_success():
             folder_path=tmp_dir_name, questions_folder_name=questions_folder_name
         )
 
-        assert sut.get_questions() == [
-            Question(id=expected_file_name, question=expected_question)
-        ]
+        assert sut.get_questions() == (
+            Question(id=expected_file_name, question=expected_question),
+        )
 
 
 def test_get_questions_in_subdirectory_should_success():
@@ -40,9 +40,9 @@ def test_get_questions_in_subdirectory_should_success():
             folder_path=tmp_dir_name, questions_folder_name=questions_folder_name
         )
 
-        assert sut.get_questions() == [
-            Question(id=expected_file_name, question=expected_question)
-        ]
+        assert sut.get_questions() == (
+            Question(id=expected_file_name, question=expected_question),
+        )
 
 
 def test_get_solution_should_success():
