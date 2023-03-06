@@ -25,6 +25,17 @@ class KataFromFile:
 
         return tuple(self._populate_question(question) for question in questions)
 
+    def get_solution(self, question_file_name: str) -> str:
+        solution_path = join(self._solutions_path, question_file_name)
+        with open(solution_path, "r") as file:
+            solution = file.read()
+            return solution
+
+    def save_incorrect_answer(self, question: str) -> None:
+        with open(join(self._incorrect_answers), "a") as file:
+            file.write(question)
+            file.write("\n")
+
     def _determine_list_of_questions(self) -> List[str]:
         return [
             f.replace(f"{self._questions_path}/", "")
@@ -32,17 +43,6 @@ class KataFromFile:
             if isfile(f)
         ]
 
-    def get_solution(self, question_file_name: str) -> str:
-        solution_path = join(self._solutions_path, question_file_name)
-        with open(solution_path, "r") as file:
-            solution = file.read()
-            return solution
-
     def _populate_question(self, question: str) -> Question:
         with open(join(self._questions_path, question), "r") as file:
             return Question(id=question, question=file.read())
-
-    def save_incorrect_answer(self, question: str) -> None:
-        with open(join(self._incorrect_answers), "a") as file:
-            file.write(question)
-            file.write("\n")
