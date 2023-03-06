@@ -1,4 +1,5 @@
 import glob
+import random
 from os.path import isfile, join
 from typing import List
 
@@ -19,6 +20,8 @@ class KataFromFile:
 
     def get_questions(self) -> List[Question]:
         questions = self._determine_list_of_questions()
+
+        random.shuffle(questions)
 
         return [self._populate_question(question) for question in questions]
 
