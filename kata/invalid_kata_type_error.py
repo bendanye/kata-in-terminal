@@ -1,0 +1,2 @@
+class InvalidKataTypeError(Exception):
+    pass
