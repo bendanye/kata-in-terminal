@@ -4,12 +4,14 @@ from os.path import isfile, join
 from typing import List, Tuple
 
 from kata.question import Question
+from kata.question_option.question_option import QuestionOption
 
 
 class KataFromFile:
     def __init__(
         self,
         folder_path: str,
+        question_option: QuestionOption,
         questions_folder_name: str = "questions",
         solutions_folder_name: str = "solutions",
         incorrect_answers: str = "incorrect_answers.txt",
@@ -17,13 +19,13 @@ class KataFromFile:
         self._questions_path = join(folder_path, questions_folder_name)
         self._solutions_path = join(folder_path, solutions_folder_name)
         self._incorrect_answers = incorrect_answers
+        self._question_option = question_option
 
     def get_questions(self) -> Tuple[Question, ...]:
         questions = self._determine_list_of_questions()
-
-        random.shuffle(questions)
-
-        return tuple(self._populate_question(question) for question in questions)
+        filter_questions = self._question_option.select(questions)
+        random.shuffle(filter_questions)
+        return tuple(self._populate_question(question) for question in filter_questions)
 
     def get_solution(self, question_file_name: str) -> str:
         solution_path = join(self._solutions_path, question_file_name)

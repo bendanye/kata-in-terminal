@@ -1,8 +1,9 @@
 import argparse
 import os
 
-from kata.kata_factory import KataFactory
+from kata.question_option.question_option_factory import QuestionOptionFactory
 from kata.kata_helper import get_answer_from_solution
+from kata.kata_from_file import KataFromFile
 
 
 def main() -> None:
@@ -11,10 +12,16 @@ def main() -> None:
     folder_path = args.folder_path
     questions_folder_name = args.question_folder_name
     solutions_folder_name = args.solution_folder_name
-    kata_type = args.type
+    question_option = args.question_option
 
-    kata = KataFactory.get_kata(
-        kata_type, folder_path, questions_folder_name, solutions_folder_name
+    incorrect_answers = "incorrect_answers.txt"
+
+    kata = KataFromFile(
+        folder_path,
+        QuestionOptionFactory.get_question_option(question_option, incorrect_answers),
+        questions_folder_name,
+        solutions_folder_name,
+        incorrect_answers=incorrect_answers,
     )
 
     _start(kata)
@@ -28,7 +35,7 @@ def _parse_args():
     parser.add_argument(
         "--solution_folder_name", nargs="?", const="solutions", default="solutions"
     )
-    parser.add_argument("--type", nargs="?", const="file", default="file")
+    parser.add_argument("--question_option", nargs="?", const="all", default="all")
     parser.add_argument(
         "--folder_path", metavar="P", help="Root Path to the questions and solutions"
     )

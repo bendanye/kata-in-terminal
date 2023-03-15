@@ -4,6 +4,9 @@ from os.path import join
 
 from kata.kata_from_file import KataFromFile
 from kata.question import Question
+from kata.question_option.question_option_all_questions import (
+    QuestionOptionAllQuestions,
+)
 
 
 def test_get_questions_should_success():
@@ -17,7 +20,9 @@ def test_get_questions_should_success():
         f.close()
 
         sut = KataFromFile(
-            folder_path=tmp_dir_name, questions_folder_name=questions_folder_name
+            folder_path=tmp_dir_name,
+            question_option=QuestionOptionAllQuestions(),
+            questions_folder_name=questions_folder_name,
         )
 
         assert sut.get_questions() == (
@@ -37,7 +42,9 @@ def test_get_questions_in_subdirectory_should_success():
         f.close()
 
         sut = KataFromFile(
-            folder_path=tmp_dir_name, questions_folder_name=questions_folder_name
+            folder_path=tmp_dir_name,
+            question_option=QuestionOptionAllQuestions(),
+            questions_folder_name=questions_folder_name,
         )
 
         assert sut.get_questions() == (
@@ -56,7 +63,9 @@ def test_get_solution_should_success():
         f.close()
 
         sut = KataFromFile(
-            folder_path=tmp_dir_name, solutions_folder_name=solutions_folder_name
+            folder_path=tmp_dir_name,
+            question_option=QuestionOptionAllQuestions(),
+            solutions_folder_name=solutions_folder_name,
         )
 
         assert sut.get_solution(expected_file_name) == expected_solution
@@ -66,7 +75,9 @@ def test_save_incorrect_answer_should_success():
     with tempfile.TemporaryDirectory() as tmp_dir_name:
         incorrect_answers_file_path = join(tmp_dir_name, "incorrect_answers.txt")
         sut = KataFromFile(
-            folder_path=tmp_dir_name, incorrect_answers=incorrect_answers_file_path
+            folder_path=tmp_dir_name,
+            question_option=QuestionOptionAllQuestions(),
+            incorrect_answers=incorrect_answers_file_path,
         )
 
         sut.save_incorrect_answer("incorrect_answer1")
