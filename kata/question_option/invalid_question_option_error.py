@@ -1,0 +1,2 @@
+class InvalidQuestionOptionError(Exception):
+    pass
