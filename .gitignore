@@ -3,3 +3,4 @@ __pycache__
 .coverage
 .idea
 .mypy_cache
+incorrect_answers.txt
