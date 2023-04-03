@@ -44,7 +44,7 @@ def _parse_args():
 
 
 def _start(kata) -> None:
-    input("-> Press enter to move to start...\n")
+    input("-> Press any keys to move to start...\n")
 
     questions = kata.get_questions()
     current_question = 0
@@ -63,7 +63,7 @@ def _start(kata) -> None:
             print(f"Incorrect Answer! ❌. Correct answer is:\n {solution_answer}")
             kata.save_incorrect_answer(chosen_question.id)
 
-        input("-> Press enter to move to next question...\n")
+        input("-> Press any keys to move to next question...\n")
 
         current_question = current_question + 1
         if len(questions) == current_question:
