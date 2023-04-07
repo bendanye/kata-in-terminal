@@ -44,7 +44,7 @@ def _parse_args():
 
 
 def _start(kata) -> None:
-    input("-> Press any keys to move to start...\n")
+    input("-> Press any keys to start...\n")
 
     questions = kata.get_questions()
     current_question = 0
