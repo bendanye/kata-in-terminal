@@ -1,14 +1,14 @@
 test:
 	pytest
 
-test_coverage:
+test-coverage:
 	pytest --cov=kata --cov-fail-under=90
 
-type_hint:
+type-hint:
 	mypy main.py kata
 
-run_example:
+run-example:
 	python3 main.py --folder_path examples
 
-install_precommit_hook:
+install-precommit-hook:
 	pre-commit install
