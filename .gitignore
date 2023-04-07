@@ -4,3 +4,4 @@ __pycache__
 .idea
 .mypy_cache
 incorrect_answers.txt
+time_taken.txt

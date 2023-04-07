@@ -1,5 +1,8 @@
 import argparse
 import os
+import time
+
+from datetime import datetime
 
 from kata.question_option.question_option_factory import QuestionOptionFactory
 from kata.kata_helper import get_answer_from_solution
@@ -24,7 +27,14 @@ def main() -> None:
         incorrect_answers=incorrect_answers,
     )
 
+    input("-> Press any keys to start...\n")
+    start_time = time.time()
     _start(kata)
+    end_time = time.time()
+    with open("time_taken.txt", "w") as f:
+        f.write(
+            f"{datetime.today().strftime('%Y-%m-%d')};{round(end_time - start_time)}"
+        )
 
 
 def _parse_args():
@@ -44,7 +54,6 @@ def _parse_args():
 
 
 def _start(kata) -> None:
-    input("-> Press any keys to start...\n")
 
     questions = kata.get_questions()
     current_question = 0

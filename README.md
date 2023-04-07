@@ -45,7 +45,7 @@ python main.py --folder_path examples
 - [ ] Allow to run in non-interactive mode, like exam mode
 - [ ] Allow to run mode where number of questions based on day of the week
 - [ ] Allow Number of questions based on day of the week
-- [ ] Log time taken and output to a file
+- [X] Log time taken and output to a file
 
 ## Impetus
 
