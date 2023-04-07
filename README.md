@@ -43,6 +43,9 @@ python main.py --folder_path examples
 - [ ] Check that code is correct even if there is new line
 - [ ] Generate questions from a markdown file
 - [ ] Allow to run in non-interactive mode, like exam mode
+- [ ] Allow to run mode where number of questions based on day of the week
+- [ ] Allow Number of questions based on day of the week
+- [ ] Log time taken and output to a file
 
 ## Impetus
 
