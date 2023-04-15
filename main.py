@@ -28,13 +28,12 @@ def main() -> None:
     )
 
     input("-> Press any keys to start...\n")
+
     start_time = time.time()
     _start(kata)
     end_time = time.time()
-    with open("time_taken.txt", "w") as f:
-        f.write(
-            f"{datetime.today().strftime('%Y-%m-%d')};{round(end_time - start_time)}"
-        )
+
+    _save_kata_time(start_time=start_time, end_time=end_time, folder_path=folder_path)
 
 
 def _parse_args():
@@ -78,6 +77,13 @@ def _start(kata) -> None:
         if len(questions) == current_question:
             print("All questions have been asked...")
             break
+
+
+def _save_kata_time(start_time: float, end_time: float, folder_path: str) -> None:
+    with open(f"{folder_path}/time_taken.txt", "w") as f:
+        f.write(
+            f"{datetime.today().strftime('%Y-%m-%d')};{round(end_time - start_time)}"
+        )
 
 
 if __name__ == "__main__":

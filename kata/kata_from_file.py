@@ -18,7 +18,7 @@ class KataFromFile:
     ) -> None:
         self._questions_path = join(folder_path, questions_folder_name)
         self._solutions_path = join(folder_path, solutions_folder_name)
-        self._incorrect_answers = incorrect_answers
+        self._incorrect_answers = join(folder_path, incorrect_answers)
         self._question_option = question_option
 
     def get_questions(self) -> Tuple[Question, ...]:
