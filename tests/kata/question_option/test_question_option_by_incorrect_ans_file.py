@@ -1,7 +1,7 @@
 import tempfile
 from os.path import join
 
-from kata.question_option.question_option_by_incorrect_ans_file import (
+from src.kata.question_option.question_option_by_incorrect_ans_file import (
     QuestionOptionByIncorrectAnsFile,
 )
 

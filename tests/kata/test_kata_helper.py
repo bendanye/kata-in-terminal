@@ -1,4 +1,4 @@
-from kata.kata_helper import get_answer_from_solution
+from src.kata.kata_helper import get_answer_from_solution
 
 
 def test_get_answer_from_solution_when_answer_in_solution_is_one_line():

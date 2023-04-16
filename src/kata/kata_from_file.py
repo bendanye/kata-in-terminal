@@ -3,8 +3,8 @@ import random
 from os.path import isfile, join
 from typing import List, Tuple
 
-from kata.question import Question
-from kata.question_option.question_option import QuestionOption
+from src.kata.question import Question
+from src.kata.question_option.question_option import QuestionOption
 
 
 class KataFromFile:

@@ -1,12 +1,15 @@
 import argparse
 import os
 import time
+import sys
 
 from datetime import datetime
 
-from kata.question_option.question_option_factory import QuestionOptionFactory
-from kata.kata_helper import get_answer_from_solution
-from kata.kata_from_file import KataFromFile
+sys.path.insert(0, "../kata-in-terminal")
+
+from src.kata.question_option.question_option_factory import QuestionOptionFactory
+from src.kata.kata_helper import get_answer_from_solution
+from src.kata.kata_from_file import KataFromFile
 
 
 def main() -> None:

@@ -2,9 +2,9 @@ import os
 import tempfile
 from os.path import join
 
-from kata.kata_from_file import KataFromFile
-from kata.question import Question
-from kata.question_option.question_option_all_questions import (
+from src.kata.kata_from_file import KataFromFile
+from src.kata.question import Question
+from src.kata.question_option.question_option_all_questions import (
     QuestionOptionAllQuestions,
 )
 

@@ -1,16 +1,16 @@
 import pytest
 
-from kata.question_option.invalid_question_option_error import (
+from src.kata.question_option.invalid_question_option_error import (
     InvalidQuestionOptionError,
 )
-from kata.question_option.question_option_factory import QuestionOptionFactory
+from src.kata.question_option.question_option_factory import QuestionOptionFactory
 
 
 def test_should_get_all_questions():
     question_option = QuestionOptionFactory.get_question_option("all", "")
     assert (
         str(type(question_option))
-        == "<class 'kata.question_option.question_option_all_questions.QuestionOptionAllQuestions'>"
+        == "<class 'src.kata.question_option.question_option_all_questions.QuestionOptionAllQuestions'>"
     )
 
 

@@ -1,11 +1,11 @@
-from kata.question_option.invalid_question_option_error import (
+from src.kata.question_option.invalid_question_option_error import (
     InvalidQuestionOptionError,
 )
-from kata.question_option.question_option import QuestionOption
-from kata.question_option.question_option_all_questions import (
+from src.kata.question_option.question_option import QuestionOption
+from src.kata.question_option.question_option_all_questions import (
     QuestionOptionAllQuestions,
 )
-from kata.question_option.question_option_by_incorrect_ans_file import (
+from src.kata.question_option.question_option_by_incorrect_ans_file import (
     QuestionOptionByIncorrectAnsFile,
 )
 
