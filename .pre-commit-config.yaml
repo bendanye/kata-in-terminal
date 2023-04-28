@@ -9,7 +9,7 @@ repos:
         always_run: true
       - id: type-hint-check
         name: type-hint-check
-        entry: mypy main.py kata
+        entry: mypy src/main.py src/kata
         language: system
         pass_filenames: false
         always_run: true
