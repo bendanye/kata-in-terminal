@@ -30,6 +30,9 @@ def main() -> None:
         incorrect_answers=incorrect_answers,
     )
 
+    if not kata.get_questions():
+        raise Exception("There is no question found!")
+
     input("-> Press any keys to start...\n")
 
     start_time = time.time()
