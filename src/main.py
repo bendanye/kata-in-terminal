@@ -56,7 +56,6 @@ def _parse_args():
 
 
 def _start(kata) -> None:
-
     questions = kata.get_questions()
     current_question = 0
 
@@ -83,9 +82,14 @@ def _start(kata) -> None:
 
 
 def _save_kata_time(start_time: float, end_time: float, folder_path: str) -> None:
-    with open(f"{folder_path}/time_taken.txt", "w") as f:
+    file_path = f"{folder_path}/time_taken.txt"
+    if not os.path.isfile(file_path):
+        with open(file_path, "w") as f:
+            f.write("start_date,time_taken\n")
+
+    with open(file_path, "a") as f:
         f.write(
-            f"{datetime.today().strftime('%Y-%m-%d')};{round(end_time - start_time)}"
+            f"{datetime.today().strftime('%Y-%m-%d')};{round(end_time - start_time)}\n"
         )
 
 
