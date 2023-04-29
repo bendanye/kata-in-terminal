@@ -1,12 +1,12 @@
 import argparse
 import os
-import time
 import sys
-
+import time
 from datetime import datetime
 
 sys.path.insert(0, "../kata-in-terminal")
 
+from src.writer.csv_writer import CsvWriter
 from src.kata.question_option.question_option_factory import QuestionOptionFactory
 from src.kata.kata_helper import get_answer_from_solution
 from src.kata.kata_from_file import KataFromFile
@@ -86,14 +86,10 @@ def _start(kata) -> None:
 
 def _save_kata_time(start_time: float, end_time: float, folder_path: str) -> None:
     file_path = f"{folder_path}/time_taken.txt"
-    if not os.path.isfile(file_path):
-        with open(file_path, "w") as f:
-            f.write("start_date,time_taken\n")
-
-    with open(file_path, "a") as f:
-        f.write(
-            f"{datetime.today().strftime('%Y-%m-%d')};{round(end_time - start_time)}\n"
-        )
+    writer = CsvWriter(file_path, headers=["start_date", "time_taken"])
+    writer.write(
+        [datetime.today().strftime("%Y-%m-%d"), str(round(end_time - start_time))]
+    )
 
 
 if __name__ == "__main__":
