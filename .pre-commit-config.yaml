@@ -3,13 +3,13 @@ repos:
     hooks:
       - id: pytest-check
         name: pytest-check
-        entry: pytest --cov=src/kata --cov-fail-under=90 tests/
+        entry: pytest --cov=src/kata --cov=src/writer --cov-fail-under=90 tests/
         language: system
         pass_filenames: false
         always_run: true
       - id: type-hint-check
         name: type-hint-check
-        entry: mypy src/main.py src/kata
+        entry: mypy src/main.py src/kata src/writer
         language: system
         pass_filenames: false
         always_run: true
