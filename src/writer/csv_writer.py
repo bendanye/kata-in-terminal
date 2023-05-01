@@ -11,12 +11,7 @@ class CsvWriter:
     def write(self, row: List[str]):
         if not os.path.isfile(self._file_path):
             with open(self._file_path, "w") as f:
-                for col in self._headers:
-                    f.write(f"{col}{self._delimiter}")
-
-                f.write("\n")
+                f.write(f"{self._delimiter.join(self._headers)}\n")
 
         with open(self._file_path, "a") as f:
-            for col in row:
-                f.write(f"{col}{self._delimiter}")
-            f.write("\n")
+            f.write(f"{self._delimiter.join(row)}\n")
