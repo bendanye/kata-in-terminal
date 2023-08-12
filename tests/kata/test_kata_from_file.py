@@ -77,11 +77,13 @@ def test_save_incorrect_answer_should_success():
         sut = KataFromFile(
             folder_path=tmp_dir_name,
             question_option=QuestionOptionAllQuestions(),
-            incorrect_answers=incorrect_answers_file_path,
+            incorrect_answers_file_name=incorrect_answers_file_path,
         )
 
-        sut.save_incorrect_answer("incorrect_answer1")
-        sut.save_incorrect_answer("incorrect_answer2")
+        sut.add_incorrect_answer("incorrect_answer1")
+        sut.add_incorrect_answer("incorrect_answer2")
+
+        sut.save_incorrect_answer()
 
         assert os.path.exists(incorrect_answers_file_path) is True
         with open(incorrect_answers_file_path, "r") as actual_file:

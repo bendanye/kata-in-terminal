@@ -20,14 +20,16 @@ def main() -> None:
     solutions_folder_name = args.solution_folder_name
     question_option = args.question_option
 
-    incorrect_answers = "incorrect_answers.txt"
+    incorrect_answers_file_name = "incorrect_answers.txt"
 
     kata = KataFromFile(
         folder_path,
-        QuestionOptionFactory.get_question_option(question_option, incorrect_answers),
+        QuestionOptionFactory.get_question_option(
+            question_option, incorrect_answers_file_name
+        ),
         questions_folder_name,
         solutions_folder_name,
-        incorrect_answers=incorrect_answers,
+        incorrect_answers_file_name=incorrect_answers_file_name,
     )
 
     if not kata.get_questions():
@@ -39,7 +41,10 @@ def main() -> None:
     _start(kata)
     end_time = time.time()
 
-    _save_kata_time(start_time=start_time, end_time=end_time, folder_path=folder_path)
+    kata.save_incorrect_answer()
+    _save_kata_result(
+        start_time=start_time, end_time=end_time, folder_path=folder_path, kata=kata
+    )
 
 
 def _parse_args():
@@ -74,7 +79,7 @@ def _start(kata) -> None:
             print("Correct Answer! ✅")
         else:
             print(f"Incorrect Answer! ❌. Correct answer is:\n {solution_answer}")
-            kata.save_incorrect_answer(chosen_question.id)
+            kata.add_incorrect_answer(chosen_question.id)
 
         input("-> Press any keys to move to next question...\n")
 
@@ -84,11 +89,26 @@ def _start(kata) -> None:
             break
 
 
-def _save_kata_time(start_time: float, end_time: float, folder_path: str) -> None:
+def _save_kata_result(
+    start_time: float, end_time: float, folder_path: str, kata: KataFromFile
+) -> None:
     file_path = f"{folder_path}/time_taken.txt"
-    writer = CsvWriter(file_path, headers=["start_date", "time_taken"])
+    writer = CsvWriter(
+        file_path,
+        headers=[
+            "start_date",
+            "total_questions",
+            "total_incorrect_answers",
+            "time_taken_in_secs",
+        ],
+    )
     writer.write(
-        [datetime.today().strftime("%Y-%m-%d"), str(round(end_time - start_time))]
+        [
+            datetime.today().strftime("%Y-%m-%d"),
+            str(len(kata.get_questions())),
+            str(kata.get_total_incorrect_answers()),
+            str(round(end_time - start_time)),
+        ]
     )
 
 

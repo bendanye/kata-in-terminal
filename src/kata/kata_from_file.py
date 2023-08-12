@@ -14,12 +14,13 @@ class KataFromFile:
         question_option: QuestionOption,
         questions_folder_name: str = "questions",
         solutions_folder_name: str = "solutions",
-        incorrect_answers: str = "incorrect_answers.txt",
+        incorrect_answers_file_name: str = "incorrect_answers.txt",
     ) -> None:
         self._questions_path = join(folder_path, questions_folder_name)
         self._solutions_path = join(folder_path, solutions_folder_name)
-        self._incorrect_answers = join(folder_path, incorrect_answers)
+        self._incorrect_answers_file = join(folder_path, incorrect_answers_file_name)
         self._question_option = question_option
+        self._incorrect_answers = []  # type: List[str]
 
     def get_questions(self) -> Tuple[Question, ...]:
         questions = self._determine_list_of_questions()
@@ -33,10 +34,17 @@ class KataFromFile:
             solution = file.read()
             return solution
 
-    def save_incorrect_answer(self, question: str) -> None:
-        with open(join(self._incorrect_answers), "a") as file:
-            file.write(question)
-            file.write("\n")
+    def get_total_incorrect_answers(self) -> int:
+        return len(self._incorrect_answers)
+
+    def add_incorrect_answer(self, question: str) -> None:
+        self._incorrect_answers.append(question)
+
+    def save_incorrect_answer(self) -> None:
+        with open(join(self._incorrect_answers_file), "a") as file:
+            for incorrect in self._incorrect_answers:
+                file.write(incorrect)
+                file.write("\n")
 
     def _determine_list_of_questions(self) -> List[str]:
         return [
