@@ -1,5 +1,7 @@
 import os
 import tempfile
+import datetime
+
 from os.path import join
 
 from src.kata.kata_from_file import KataFromFile
@@ -88,3 +90,32 @@ def test_save_incorrect_answer_should_success():
         assert os.path.exists(incorrect_answers_file_path) is True
         with open(incorrect_answers_file_path, "r") as actual_file:
             assert "incorrect_answer1\nincorrect_answer2\n" == actual_file.read()
+
+
+def test_save_kata_result_should_success():
+    with tempfile.TemporaryDirectory() as tmp_dir_name:
+        time_taken_file_path = join(tmp_dir_name, "time_taken.txt")
+        questions_folder_name = "questions"
+        expected_question = "my question"
+        expected_file_name = "myfile.txt"
+        os.mkdir(join(tmp_dir_name, questions_folder_name))
+        f = open(join(tmp_dir_name, questions_folder_name, expected_file_name), "a")
+        f.write(expected_question)
+        f.close()
+        sut = KataFromFile(
+            folder_path=tmp_dir_name,
+            questions_folder_name=questions_folder_name,
+            question_option=QuestionOptionAllQuestions(),
+            incorrect_answers_file_name="incorrect_answers_file_path",
+        )
+        sut.add_incorrect_answer("incorrect1")
+        current_date = datetime.date(2023, 1, 2)
+
+        sut.save_kata_result(current_date=current_date, start_time=1, end_time=2)
+
+        assert os.path.exists(time_taken_file_path) is True
+        with open(time_taken_file_path, "r") as actual_file:
+            assert (
+                "start_date,total_questions,total_incorrect_answers,time_taken_in_secs\n2023-01-02,1,1,1\n"
+                == actual_file.read()
+            )

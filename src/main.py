@@ -6,7 +6,6 @@ from datetime import datetime
 
 sys.path.insert(0, "../kata-in-terminal")
 
-from src.writer.csv_writer import CsvWriter
 from src.kata.question_option.question_option_factory import QuestionOptionFactory
 from src.kata.kata_helper import get_answer_from_solution
 from src.kata.kata_from_file import KataFromFile
@@ -42,8 +41,8 @@ def main() -> None:
     end_time = time.time()
 
     kata.save_incorrect_answer()
-    _save_kata_result(
-        start_time=start_time, end_time=end_time, folder_path=folder_path, kata=kata
+    kata.save_kata_result(
+        current_date=datetime.today(), start_time=start_time, end_time=end_time
     )
 
 
@@ -87,29 +86,6 @@ def _start(kata) -> None:
         if len(questions) == current_question:
             print("All questions have been asked...")
             break
-
-
-def _save_kata_result(
-    start_time: float, end_time: float, folder_path: str, kata: KataFromFile
-) -> None:
-    file_path = f"{folder_path}/time_taken.txt"
-    writer = CsvWriter(
-        file_path,
-        headers=[
-            "start_date",
-            "total_questions",
-            "total_incorrect_answers",
-            "time_taken_in_secs",
-        ],
-    )
-    writer.write(
-        [
-            datetime.today().strftime("%Y-%m-%d"),
-            str(len(kata.get_questions())),
-            str(kata.get_total_incorrect_answers()),
-            str(round(end_time - start_time)),
-        ]
-    )
 
 
 if __name__ == "__main__":

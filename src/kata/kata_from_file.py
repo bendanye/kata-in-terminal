@@ -1,10 +1,12 @@
 import glob
 import random
+from datetime import date
 from os.path import isfile, join
 from typing import List, Tuple
 
 from src.kata.question import Question
 from src.kata.question_option.question_option import QuestionOption
+from src.writer.csv_writer import CsvWriter
 
 
 class KataFromFile:
@@ -21,6 +23,7 @@ class KataFromFile:
         self._incorrect_answers_file = join(folder_path, incorrect_answers_file_name)
         self._question_option = question_option
         self._incorrect_answers = []  # type: List[str]
+        self._time_taken_path = join(folder_path, "time_taken.txt")
 
     def get_questions(self) -> Tuple[Question, ...]:
         questions = self._determine_list_of_questions()
@@ -34,9 +37,6 @@ class KataFromFile:
             solution = file.read()
             return solution
 
-    def get_total_incorrect_answers(self) -> int:
-        return len(self._incorrect_answers)
-
     def add_incorrect_answer(self, question: str) -> None:
         self._incorrect_answers.append(question)
 
@@ -45,6 +45,27 @@ class KataFromFile:
             for incorrect in self._incorrect_answers:
                 file.write(incorrect)
                 file.write("\n")
+
+    def save_kata_result(
+        self, current_date: date, start_time: float, end_time: float
+    ) -> None:
+        writer = CsvWriter(
+            self._time_taken_path,
+            headers=[
+                "start_date",
+                "total_questions",
+                "total_incorrect_answers",
+                "time_taken_in_secs",
+            ],
+        )
+        writer.write(
+            [
+                current_date.strftime("%Y-%m-%d"),
+                str(len(self.get_questions())),
+                str(len(self._incorrect_answers)),
+                str(round(end_time - start_time)),
+            ]
+        )
 
     def _determine_list_of_questions(self) -> List[str]:
         return [
