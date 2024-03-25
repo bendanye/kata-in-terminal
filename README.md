@@ -23,13 +23,13 @@ pip install -r requirements.txt
 ### Run the program
 
 ```shell
-python main.py --folder_path <<your root path where questions and solutions folder reside>>
+python src/main.py --folder_path <<your root path where questions and solutions folder reside>>
 ```
 
 For example to run the examples in this project:
 
 ```shell
-python main.py --folder_path examples
+python src/main.py --folder_path examples
 ```
 
 ## Modes of running
