@@ -22,6 +22,8 @@ pip install -r requirements.txt
 
 ### Run the program
 
+### All questions
+
 ```shell
 python src/main.py --folder_path <<your root path where questions and solutions folder reside>>
 ```
@@ -32,11 +34,15 @@ For example to run the examples in this project:
 python src/main.py --folder_path examples
 ```
 
-## Modes of running
+### Questions from incorrect answers
 
-* Interactive mode (one question at a time)
-    * From all questions
-    * From questions previously have incorrect answer
+You can run based on list of incorrect answers in `incorrect_answers.txt`
+
+```shell
+echo "question1.txt" > incorrect_answers.txt
+python src/main.py --folder_path examples --question_option "incorrect_ans"
+rm incorrect_answers.txt
+```
 
 ## Potential enhancements
 
