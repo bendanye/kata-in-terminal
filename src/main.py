@@ -9,6 +9,7 @@ sys.path.insert(0, "../kata-in-terminal")
 from src.kata.question_option.question_option_factory import QuestionOptionFactory
 from src.kata.kata_helper import get_answer_from_solution
 from src.kata.kata_from_file import KataFromFile
+from os.path import join
 
 
 def main() -> None:
@@ -24,7 +25,7 @@ def main() -> None:
     kata = KataFromFile(
         folder_path,
         QuestionOptionFactory.get_question_option(
-            question_option, incorrect_answers_file_name
+            question_option, join(folder_path, incorrect_answers_file_name)
         ),
         questions_folder_name,
         solutions_folder_name,
