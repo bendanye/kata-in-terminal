@@ -46,6 +46,10 @@ def main() -> None:
         current_date=datetime.today(), start_time=start_time, end_time=end_time
     )
 
+    print(f"Time taken: {str(round(end_time - start_time))} seconds")
+    print(f"Total Questions: {len(kata.get_questions())}")
+    print(f"Total Incorrect Answers: {kata.get_total_incorrect_answer()}")
+
 
 def _parse_args():
     parser = argparse.ArgumentParser(description="Kata in Terminal.")
@@ -85,7 +89,7 @@ def _start(kata) -> None:
 
         current_question = current_question + 1
         if len(questions) == current_question:
-            print("All questions have been asked...")
+            print("All questions have been asked.")
             break
 
 

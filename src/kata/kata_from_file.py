@@ -40,6 +40,9 @@ class KataFromFile:
     def add_incorrect_answer(self, question: str) -> None:
         self._incorrect_answers.append(question)
 
+    def get_total_incorrect_answer(self) -> int:
+        return len(self._incorrect_answers)
+
     def save_incorrect_answer(self) -> None:
         with open(join(self._incorrect_answers_file), "w") as file:
             for incorrect in self._incorrect_answers:
@@ -62,7 +65,7 @@ class KataFromFile:
             [
                 current_date.strftime("%Y-%m-%d"),
                 str(len(self.get_questions())),
-                str(len(self._incorrect_answers)),
+                str(self.get_total_incorrect_answer()),
                 str(round(end_time - start_time)),
             ]
         )
